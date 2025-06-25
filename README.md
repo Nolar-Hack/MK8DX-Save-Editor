@@ -18,28 +18,18 @@ Ce projet utilise une **architecture modulaire** avec des petits fichiers spéci
 ## 🎮 Statistiques modifiables
 
 ### 💰 Monnaie & Objets
-- **Pièces** (0-4,294,967,295)
+- **Pièces**
 
 ### 🏎️ Techniques de course
-- **Dérapages** (0-4,294,967,295)
-- **Mini-Turbos** (0-4,294,967,295)
-- **Super Mini-Turbo** (0-4,294,967,295)
-- **Ultra Mini-Turbo** (0-4,294,967,295)
-- **Saut Synchro** (0-4,294,967,295)
-- **Sauvetage Lakitu** (0-4,294,967,295)
+- **Dérapages**
+- **Mini-Turbos**
+- **Super Mini-Turbo**
+- **Ultra Mini-Turbo**
+- **Saut Synchro**
 
 ### 🏆 Points & Classements
 - **Points Course** (0-4,294,967,295)
 - **Points Bataille** (0-4,294,967,295)
-- **Couronnes Or** (0-4,294,967,295)
-- **Couronnes Argent** (0-65,535)
-- **Couronnes Bronze** (0-65,535)
-
-### 🎮 Parties jouées
-- **Parties Mondiales/Régionales** (0-4,294,967,295)
-- **Parties entre Amis** (0-4,294,967,295)
-- **Tournois** (0-4,294,967,295)
-- **Total Parties** (0-4,294,967,295)
 
 ## 🚀 Utilisation
 
@@ -159,16 +149,8 @@ npx serve .
 | Super Mini-Turbo | 0x1974 | uint32 | 4 bytes |
 | Ultra Mini-Turbo | 0x1978 | uint32 | 4 bytes |
 | Saut Synchro | 0x1964 | uint32 | 4 bytes |
-| Sauvetage Lakitu | 0x197c | uint32 | 4 bytes |
 | Points Course | 0x1e94 | uint32 | 4 bytes |
 | Points Bataille | 0x1e98 | uint32 | 4 bytes |
-| Couronnes Or | 0x19f0 | uint32 | 4 bytes |
-| Couronnes Argent | 0x01a6 | uint16 | 2 bytes |
-| Couronnes Bronze | 0x012a | uint16 | 2 bytes |
-| Parties Mondiales | 0x02e8 | uint32 | 4 bytes |
-| Parties Amis | 0x03ac | uint32 | 4 bytes |
-| Tournois | 0x0004 | uint32 | 4 bytes |
-| Total Parties | 0x0350 | uint32 | 4 bytes |
 
 ## ⚠️ Avertissements importants
 
@@ -219,10 +201,8 @@ npx serve .
 ### v1.0.0 (2025-01-22)
 - ✨ Interface web complète
 - 🔒 Algorithme de checksum Nintendo intégré
-- 📊 16 statistiques modifiables
 - 🎨 Design moderne et responsive
 - ⚡ Validation en temps réel
-- 💾 Téléchargement automatique
 
 ## 🤝 Contribution
 
@@ -236,13 +216,3 @@ Ce projet est basé sur le reverse engineering du format de sauvegarde Mario Kar
 ## 📄 Licence
 
 Ce projet est à des fins éducatives et de recherche. Utilisez-le de manière responsable et respectez les conditions d'utilisation de Nintendo.
-
-## 🙏 Remerciements
-
-- Communauté de reverse engineering Nintendo Switch
-- Développeurs d'outils de modding Mario Kart
-- Testeurs et contributeurs
-
----
-
-**⚡ Fait avec passion pour la communauté Mario Kart 8 Deluxe ! 🏁**
