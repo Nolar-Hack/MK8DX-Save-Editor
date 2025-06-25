@@ -26,7 +26,6 @@ This project uses a **modular architecture** with small specialized files for be
 - **Super Mini-Turbo**
 - **Ultra Mini-Turbo**
 - **Jump Sync**
-- **Lakitu Rescue**
 
 ### 🏆 Points & Rankings
 - **Race Points**
