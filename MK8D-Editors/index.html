@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Kart 8 Deluxe - Éditeur de Sauvegarde</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Modules -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/messages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="mk-logo">🏁</span>
+                    Mario Kart 8 Deluxe
+                    <span class="subtitle">Éditeur de Sauvegarde</span>
+                </h1>
+                <p class="description">Modifiez vos statistiques de jeu en toute sécurité</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Section de chargement de fichier -->
+            <section class="file-section">
+                <div class="card">
+                    <h2>📁 Charger le fichier de sauvegarde</h2>
+                    <div class="file-input-container">
+                        <input type="file" id="fileInput" accept=".dat" class="file-input">
+                        <label for="fileInput" class="file-label">
+                            <span class="file-icon">📄</span>
+                            <span class="file-text">Sélectionner userdata.dat</span>
+                        </label>
+                    </div>
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <div class="info-item">
+                            <span class="info-label">Fichier :</span>
+                            <span class="info-value" id="fileName"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Taille :</span>
+                            <span class="info-value" id="fileSize"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Checksum :</span>
+                            <span class="info-value" id="fileChecksum"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Compteur :</span>
+                            <span class="info-value" id="fileCounter"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section des statistiques -->
+            <section class="stats-section" id="statsSection" style="display: none;">
+                <div class="card">
+                    <h2>📊 Statistiques du jeu</h2>
+                    <div class="stats-grid">
+                        <!-- Monnaie et objets -->
+                        <div class="stat-category">
+                            <h3>💰 Monnaie & Objets</h3>
+                            <div class="stat-item">
+                                <label for="coins">Pièces</label>
+                                <input type="number" id="coins" min="0" max="99999">
+                            </div>
+                        </div>
+
+                        <!-- Techniques de course -->
+                        <div class="stat-category">
+                            <h3>🏎️ Techniques de course</h3>
+                            <div class="stat-item">
+                                <label for="drifts">Dérapages</label>
+                                <input type="number" id="drifts" min="0" max="999999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="miniTurbos">Mini-Turbos</label>
+                                <input type="number" id="miniTurbos" min="0" max="999999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="superMiniTurbo">Super Mini-Turbo</label>
+                                <input type="number" id="superMiniTurbo" min="0" max="999999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="ultraMiniTurbo">Ultra Mini-Turbo</label>
+                                <input type="number" id="ultraMiniTurbo" min="0" max="999999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="jumpSync">Saut Synchro</label>
+                                <input type="number" id="jumpSync" min="0" max="999999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="lakituRescue">Sauvetage Lakitu</label>
+                                <input type="number" id="lakituRescue" min="0" max="999999">
+                            </div>
+                        </div>
+
+                        <!-- Points et classements -->
+                        <div class="stat-category">
+                            <h3>🏆 Points & Classements</h3>
+                            <div class="stat-item">
+                                <label for="racePoints">Points Course</label>
+                                <input type="number" id="racePoints" min="0" max="99999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="battlePoints">Points Bataille</label>
+                                <input type="number" id="battlePoints" min="0" max="99999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="goldCrowns">Couronnes Or</label>
+                                <input type="number" id="goldCrowns" min="0" max="999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="silverCrowns">Couronnes Argent</label>
+                                <input type="number" id="silverCrowns" min="0" max="999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="bronzeCrowns">Couronnes Bronze</label>
+                                <input type="number" id="bronzeCrowns" min="0" max="999">
+                            </div>
+                        </div>
+
+                        <!-- Parties jouées -->
+                        <div class="stat-category">
+                            <h3>🎮 Parties jouées</h3>
+                            <div class="stat-item">
+                                <label for="worldRegionalGames">Parties Mondiales/Régionales</label>
+                                <input type="number" id="worldRegionalGames" min="0" max="99999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="friendGames">Parties entre Amis</label>
+                                <input type="number" id="friendGames" min="0" max="99999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="tournaments">Tournois</label>
+                                <input type="number" id="tournaments" min="0" max="99999">
+                            </div>
+                            <div class="stat-item">
+                                <label for="totalGames">Total Parties</label>
+                                <input type="number" id="totalGames" min="0" max="99999">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section de modification du compteur -->
+            <section class="counter-section" id="counterSection" style="display: none;">
+                <div class="card">
+                    <h2>🔧 Modification du compteur</h2>
+                    <div class="counter-content">
+                        <div class="counter-info">
+                            <p>Le compteur est incrémenté à chaque modification du fichier de sauvegarde. Vous pouvez le modifier manuellement si nécessaire.</p>
+                        </div>
+                        <div class="counter-controls">
+                            <div class="stat-item">
+                                <label for="counterInput">Nouveau compteur (0-255)</label>
+                                <div class="counter-input-group">
+                                    <input type="number" id="counterInput" min="0" max="255" class="counter-input">
+                                    <button class="action-btn secondary small" id="clearCounterBtn" title="Effacer le champ">
+                                        <span class="btn-icon">🗑️</span>
+                                    </button>
+                                    <button class="action-btn primary small" id="loadCurrentCounterBtn">
+                                        <span class="btn-icon">📖</span>
+                                        Charger actuel
+                                    </button>
+                                    <button class="action-btn success small" id="modifyCounterBtn">
+                                        <span class="btn-icon">✏️</span>
+                                        Modifier
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="counter-status" id="counterStatus"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section des actions -->
+            <section class="actions-section" id="actionsSection" style="display: none;">
+                <div class="card">
+                    <h2>⚡ Actions</h2>
+                    <div class="actions-grid">
+                        <button class="action-btn primary" id="saveBtn">
+                            <span class="btn-icon">💾</span>
+                            Sauvegarder les modifications
+                        </button>
+                        <button class="action-btn secondary" id="resetBtn">
+                            <span class="btn-icon">🔄</span>
+                            Réinitialiser les valeurs
+                        </button>
+                        <button class="action-btn danger" id="downloadBtn" style="display: none;">
+                            <span class="btn-icon">⬇️</span>
+                            Télécharger le fichier modifié
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section d'informations -->
+            <section class="info-section">
+                <div class="card info-card">
+                    <h2>ℹ️ Informations importantes</h2>
+                    <div class="info-content">
+                        <div class="warning">
+                            <strong>⚠️ Attention :</strong> Toujours faire une sauvegarde de votre fichier original avant modification !
+                        </div>
+                        <ul class="info-list">
+                            <li>✅ Cet éditeur utilise l'algorithme de checksum Nintendo officiel</li>
+                            <li>✅ Les modifications préservent l'intégrité du fichier</li>
+                            <li>✅ Compatible avec Mario Kart 8 Deluxe (Nintendo Switch)</li>
+                            <li>🔒 Aucune donnée n'est envoyée sur internet - tout est traité localement</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 MK8D Save Editor - Reverse Engineering Project</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Modules -->
+<script src="js/formatters.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/binary.js"></script>
+    <script src="js/fileUtils.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/offsets.js"></script>
+    <script src="js/saveEditorCore.js"></script>
+    <script src="js/saveEditorUtils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

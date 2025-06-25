@@ -1,0 +1,194 @@
+/* Styles pour les formulaires et inputs */
+.file-input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.file-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.1rem;
+}
+
+.file-label:hover {
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 53, 0.1);
+    transform: scale(1.02);
+}
+
+.file-icon {
+    font-size: 2rem;
+}
+
+.stat-item {
+    margin-bottom: 20px;
+}
+
+.stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.stat-item label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.stat-item input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.stat-item input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+}
+
+.stat-item input:hover {
+    border-color: var(--accent-color);
+}
+
+/* États des inputs */
+.stat-item input.modified {
+    border-color: var(--warning-color) !important;
+    box-shadow: 0 0 0 2px rgba(247, 127, 0, 0.2) !important;
+}
+
+.stat-item input.error {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 2px rgba(239, 71, 111, 0.2) !important;
+}
+
+.stat-item input.saved {
+    border-color: var(--success-color) !important;
+    box-shadow: 0 0 0 2px rgba(6, 214, 160, 0.2) !important;
+}
+
+/* Styles pour la section du compteur */
+.counter-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.counter-info {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.counter-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.counter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.counter-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.counter-input {
+    flex: 0 0 120px;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.counter-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+}
+
+.counter-input:hover {
+    border-color: var(--accent-color);
+}
+
+.counter-status {
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.counter-status.success {
+    background: rgba(6, 214, 160, 0.1);
+    border: 1px solid rgba(6, 214, 160, 0.3);
+    color: var(--success-color);
+}
+
+.counter-status.error {
+    background: rgba(239, 71, 111, 0.1);
+    border: 1px solid rgba(239, 71, 111, 0.3);
+    color: var(--danger-color);
+}
+
+.counter-status.info {
+    background: rgba(17, 138, 178, 0.1);
+    border: 1px solid rgba(17, 138, 178, 0.3);
+    color: var(--accent-color);
+}
+
+.counter-status.warning {
+    background: rgba(247, 127, 0, 0.1);
+    border: 1px solid rgba(247, 127, 0, 0.3);
+    color: var(--warning-color);
+}
+
+/* Responsive pour la section compteur */
+@media (max-width: 768px) {
+    .counter-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .counter-input {
+        flex: 1;
+    }
+}

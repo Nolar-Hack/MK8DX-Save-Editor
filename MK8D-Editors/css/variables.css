@@ -1,0 +1,18 @@
+/* Variables CSS globales */
+:root {
+    --primary-color: #ff6b35;
+    --secondary-color: #004e89;
+    --accent-color: #ffd23f;
+    --success-color: #06d6a0;
+    --danger-color: #ef476f;
+    --warning-color: #f77f00;
+    --dark-bg: #1a1a2e;
+    --light-bg: #16213e;
+    --card-bg: #0f3460;
+    --text-primary: #ffffff;
+    --text-secondary: #b8c5d6;
+    --border-color: #2d4a6b;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
