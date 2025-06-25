@@ -358,7 +358,7 @@ function addTooltips() {
 }
 
 /**
- * Gère l'effacement du champ compteur
+ * Handle counter field clearing
  */
 function handleClearCounter() {
     const counterInput = document.getElementById('counterInput');
@@ -367,15 +367,15 @@ function handleClearCounter() {
     counterInput.value = '';
     counterInput.focus();
     
-    updateCounterStatus('🗑️ Champ effacé. Saisissez une nouvelle valeur (0-255).', 'info');
+    updateCounterStatus('🗑️ Field cleared. Enter a new value (0-255).', 'info');
 }
 
 /**
- * Gère le chargement du compteur actuel
+ * Handle current counter loading
  */
 function handleLoadCurrentCounter() {
     if (!isFileLoaded) {
-        updateCounterStatus('❌ Aucun fichier chargé', 'error');
+        updateCounterStatus('❌ No file loaded', 'error');
         return;
     }
 
@@ -384,19 +384,19 @@ function handleLoadCurrentCounter() {
         const currentCounter = systemInfo.counter;
         
         document.getElementById('counterInput').value = currentCounter;
-        updateCounterStatus(`📊 Compteur actuel: ${currentCounter} (0x${currentCounter.toString(16).padStart(2, '0').toUpperCase()})`, 'info');
+        updateCounterStatus(`📊 Current counter: ${currentCounter} (0x${currentCounter.toString(16).padStart(2, '0').toUpperCase()})`, 'info');
         
     } catch (error) {
-        updateCounterStatus(`❌ Erreur lors du chargement: ${error.message}`, 'error');
+        updateCounterStatus(`❌ Loading error: ${error.message}`, 'error');
     }
 }
 
 /**
- * Gère la modification du compteur
+ * Handle counter modification
  */
 function handleModifyCounter() {
     if (!isFileLoaded) {
-        updateCounterStatus('❌ Aucun fichier chargé', 'error');
+        updateCounterStatus('❌ No file loaded', 'error');
         return;
     }
 
@@ -404,37 +404,37 @@ function handleModifyCounter() {
     const newCounter = parseInt(counterInput.value);
     
     if (isNaN(newCounter) || newCounter < 0 || newCounter > 255) {
-        updateCounterStatus('❌ Le compteur doit être entre 0 et 255', 'error');
+        updateCounterStatus('❌ Counter must be between 0 and 255', 'error');
         return;
     }
 
     try {
         const oldCounter = saveEditor.getSystemInfo().counter;
 
-        // Utiliser la nouvelle méthode pour définir le compteur
+        // Use new method to set counter
         saveEditor.setCounter(newCounter);
         
-        // Recalculer et mettre à jour le checksum via la méthode centralisée
+        // Recalculate and update checksum via centralized method
         const newChecksum = saveEditor.updateChecksum();
         
-        // Mettre à jour l'affichage
+        // Update display
         updateFileInfoAfterCounterModification(newCounter, newChecksum);
         showDownloadButton();
         
         updateCounterStatus(
-            `✅ Compteur modifié: ${oldCounter} → ${newCounter}<br>🔧 Nouveau checksum: 0x${newChecksum.toString(16).padStart(8, '0').toUpperCase()}`,
+            `✅ Counter modified: ${oldCounter} → ${newCounter}<br>🔧 New checksum: 0x${newChecksum.toString(16).padStart(8, '0').toUpperCase()}`,
             'success'
         );
         
-        showStatusMessage(`Compteur modifié avec succès: ${oldCounter} → ${newCounter}`, 'success');
+        showStatusMessage(`Counter modified successfully: ${oldCounter} → ${newCounter}`, 'success');
         
     } catch (error) {
-        updateCounterStatus(`❌ Erreur: ${error.message}`, 'error');
+        updateCounterStatus(`❌ Error: ${error.message}`, 'error');
     }
 }
 
 /**
- * Met à jour le statut du compteur
+ * Update counter status
  */
 function updateCounterStatus(message, type) {
     const counterStatus = document.getElementById('counterStatus');
@@ -443,24 +443,24 @@ function updateCounterStatus(message, type) {
 }
 
 /**
- * Met à jour les informations du fichier après modification du compteur
+ * Update file information after counter modification
  */
 function updateFileInfoAfterCounterModification(newCounter, newChecksum) {
     document.getElementById('fileChecksum').textContent = formatHex(newChecksum);
     document.getElementById('fileCounter').textContent = newCounter;
 }
 
-// Gestion des erreurs globales
+// Global error handling
 window.addEventListener('error', function(event) {
-    console.error('Erreur JavaScript:', event.error);
-    showStatusMessage('Une erreur inattendue s\'est produite. Consultez la console pour plus de détails.', 'error');
+    console.error('JavaScript error:', event.error);
+    showStatusMessage('An unexpected error occurred. Check the console for more details.', 'error');
 });
 
-// Prévention de la fermeture accidentelle
+// Prevent accidental closing
 window.addEventListener('beforeunload', function(event) {
     const modifiedInputs = document.querySelectorAll('.stat-item input.modified');
     if (modifiedInputs.length > 0) {
         event.preventDefault();
-        event.returnValue = 'Vous avez des modifications non sauvegardées. Êtes-vous sûr de vouloir quitter ?';
+        event.returnValue = 'You have unsaved modifications. Are you sure you want to leave?';
     }
 });

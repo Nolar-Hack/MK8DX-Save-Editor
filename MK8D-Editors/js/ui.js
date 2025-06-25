@@ -1,19 +1,19 @@
 /**
- * Fonctions d'interface utilisateur
+ * User interface functions
  */
 
 /**
- * Affiche un message de statut à l'utilisateur
- * @param {string} message - Le message à afficher
- * @param {string} type - Le type de message (success, error, warning)
- * @param {number} duration - Durée d'affichage en ms (0 = permanent)
+ * Displays a status message to the user
+ * @param {string} message - The message to display
+ * @param {string} type - The message type (success, error, warning)
+ * @param {number} duration - Display duration in ms (0 = permanent)
  */
 function showStatusMessage(message, type = 'info', duration = 5000) {
-    // Supprime les anciens messages
+    // Remove old messages
     const existingMessages = document.querySelectorAll('.status-message');
     existingMessages.forEach(msg => msg.remove());
     
-    // Crée le nouveau message
+    // Create new message
     const messageDiv = document.createElement('div');
     messageDiv.className = `status-message ${type}`;
     
@@ -26,14 +26,14 @@ function showStatusMessage(message, type = 'info', duration = 5000) {
     
     messageDiv.innerHTML = `<span>${icon}</span><span>${message}</span>`;
     
-    // Trouve le conteneur approprié
+    // Find appropriate container
     const container = document.querySelector('.file-section .card') || document.body;
     container.appendChild(messageDiv);
     
-    // Animation d'entrée
+    // Entry animation
     messageDiv.classList.add('fade-in');
     
-    // Suppression automatique
+    // Automatic removal
     if (duration > 0) {
         setTimeout(() => {
             if (messageDiv.parentNode) {
@@ -46,9 +46,9 @@ function showStatusMessage(message, type = 'info', duration = 5000) {
 }
 
 /**
- * Met à jour les informations du fichier dans l'interface
- * @param {File} file - Le fichier chargé
- * @param {Object} validation - Les résultats de validation
+ * Updates file information in the interface
+ * @param {File} file - The loaded file
+ * @param {Object} validation - Validation results
  */
 function updateFileInfo(file, validation) {
     document.getElementById('fileName').textContent = file.name;
@@ -60,8 +60,8 @@ function updateFileInfo(file, validation) {
 }
 
 /**
- * Met à jour l'affichage des statistiques
- * @param {Object} stats - Les statistiques à afficher
+ * Updates statistics display
+ * @param {Object} stats - Statistics to display
  */
 function updateStatsDisplay(stats) {
     for (const [statName, value] of Object.entries(stats)) {
@@ -74,14 +74,14 @@ function updateStatsDisplay(stats) {
 }
 
 /**
- * Affiche les sections cachées après chargement du fichier
+ * Shows hidden sections after file loading
  */
 function showSections() {
     document.getElementById('statsSection').style.display = 'block';
     document.getElementById('counterSection').style.display = 'block';
     document.getElementById('actionsSection').style.display = 'block';
     
-    // Animation d'apparition
+    // Appearance animation
     setTimeout(() => {
         document.getElementById('statsSection').classList.add('fade-in');
         document.getElementById('counterSection').classList.add('fade-in');
@@ -90,7 +90,7 @@ function showSections() {
 }
 
 /**
- * Met à jour l'état du bouton de sauvegarde
+ * Updates save button state
  */
 function updateSaveButtonState() {
     const saveBtn = document.getElementById('saveBtn');
@@ -99,9 +99,9 @@ function updateSaveButtonState() {
     
     if (modifiedInputs.length > 0 && errorInputs.length === 0 && isFileLoaded) {
         saveBtn.disabled = false;
-        saveBtn.textContent = `💾 Sauvegarder ${modifiedInputs.length} modification(s)`;
+        saveBtn.textContent = `💾 Save ${modifiedInputs.length} modification(s)`;
     } else {
         saveBtn.disabled = true;
-        saveBtn.innerHTML = '<span class="btn-icon">💾</span>Sauvegarder les modifications';
+        saveBtn.innerHTML = '<span class="btn-icon">💾</span>Save modifications';
     }
 }

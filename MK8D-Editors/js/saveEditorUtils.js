@@ -1,21 +1,21 @@
 /**
- * Utilitaires pour l'éditeur de sauvegarde
+ * Save editor utilities
  */
 
 /**
- * Extension de la classe MK8DSaveEditor avec des méthodes utilitaires
+ * Extension of MK8DSaveEditor class with utility methods
  */
 Object.assign(MK8DSaveEditor.prototype, {
     /**
-     * Incrémente le compteur de sauvegarde (1 byte à l'offset 0x2124)
+     * Increment save counter (1 byte at offset 0x2124)
      */
     incrementCounter() {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé');
+            throw new Error('No save file loaded');
         }
 
         const currentCounter = this.saveData[SYSTEM_OFFSETS.counter];
-        const newCounter = (currentCounter + 1) & 0xFF; // Garde sur 1 byte
+        const newCounter = (currentCounter + 1) & 0xFF; // Keep on 1 byte
         
         this.saveData[SYSTEM_OFFSETS.counter] = newCounter;
         this.isModified = true;
@@ -24,38 +24,38 @@ Object.assign(MK8DSaveEditor.prototype, {
     },
 
 /**
-     * Définit la valeur du compteur de sauvegarde
-     * @param {number} newCounter - La nouvelle valeur du compteur (0-255)
+     * Set save counter value
+     * @param {number} newCounter - New counter value (0-255)
      */
     setCounter(newCounter) {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé');
+            throw new Error('No save file loaded');
         }
         if (newCounter < 0 || newCounter > 255) {
-            throw new Error('La valeur du compteur doit être entre 0 et 255');
+            throw new Error('Counter value must be between 0 and 255');
         }
 
         this.saveData[SYSTEM_OFFSETS.counter] = newCounter;
         this.isModified = true;
     },
     /**
-     * Recalcule et met à jour le checksum Nintendo.
-     * Cette méthode garantit que le checksum est toujours calculé
-     * sur la version la plus récente des données de sauvegarde.
-     * @returns {number} - Le nouveau checksum calculé.
+     * Recalculate and update Nintendo checksum.
+     * This method ensures the checksum is always calculated
+     * on the most recent version of save data.
+     * @returns {number} - The new calculated checksum.
      */
     updateChecksum() {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé pour calculer le checksum.');
+            throw new Error('No save file loaded to calculate checksum.');
         }
 
-        // Pour garantir l'intégrité, nous travaillons sur une copie complète.
+        // To ensure integrity, we work on a complete copy.
         const dataForChecksum = new Uint8Array(this.saveData);
 
-        // Met à zéro les 4 octets du checksum dans la copie.
+        // Zero out the 4 checksum bytes in the copy.
         dataForChecksum.fill(0, SYSTEM_OFFSETS.checksum, SYSTEM_OFFSETS.checksum + 4);
 
-        // Calcule le nouveau checksum à partir de la copie modifiée.
+        // Calculate new checksum from modified copy.
         const newChecksum = calculateNintendoChecksum(dataForChecksum);
         writeUint32LE(this.saveData, SYSTEM_OFFSETS.checksum, newChecksum);
 
@@ -63,18 +63,18 @@ Object.assign(MK8DSaveEditor.prototype, {
     },
 
     /**
-     * Finalise les modifications et prépare le fichier pour la sauvegarde
-     * @returns {Object} - Informations sur la finalisation
+     * Finalize modifications and prepare file for saving
+     * @returns {Object} - Finalization information
      */
     finalizeSave() {
         if (!this.saveData || !this.isModified) {
-            throw new Error('Aucune modification à finaliser');
+            throw new Error('No modifications to finalize');
         }
 
-        // Incrémentation du compteur
+        // Counter increment
         const newCounter = this.incrementCounter();
         
-        // Mise à jour du checksum
+        // Checksum update
         const newChecksum = this.updateChecksum();
 
         return {
@@ -85,8 +85,8 @@ Object.assign(MK8DSaveEditor.prototype, {
     },
 
     /**
-     * Obtient les informations système du fichier
-     * @returns {Object} - Informations système
+     * Get system information from file
+     * @returns {Object} - System information
      */
     getSystemInfo() {
         if (!this.saveData) {
@@ -95,7 +95,7 @@ Object.assign(MK8DSaveEditor.prototype, {
 
         return {
             checksum: readUint32LE(this.saveData, SYSTEM_OFFSETS.checksum),
-            counter: this.saveData[SYSTEM_OFFSETS.counter], // 1 byte seulement
+            counter: this.saveData[SYSTEM_OFFSETS.counter], // 1 byte only
             size: this.saveData.length,
             fileName: this.fileName,
             isModified: this.isModified
@@ -103,20 +103,20 @@ Object.assign(MK8DSaveEditor.prototype, {
     },
 
     /**
-     * Valide l'intégrité du fichier actuel
-     * @returns {Object} - Résultat de la validation
+     * Validate current file integrity
+     * @returns {Object} - Validation result
      */
     validateCurrentFile() {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé');
+            throw new Error('No save file loaded');
         }
 
         return validateSaveFileSimple(this.saveData);
     },
 
     /**
-     * Génère un nom de fichier pour la sauvegarde modifiée
-     * @returns {string} - Le nom de fichier suggéré
+     * Generate filename for modified save
+     * @returns {string} - Suggested filename
      */
     generateModifiedFileName() {
         if (!this.fileName) {
@@ -131,6 +131,6 @@ Object.assign(MK8DSaveEditor.prototype, {
 });
 
 /**
- * Instance globale de l'éditeur de sauvegarde
+ * Global save editor instance
  */
 const saveEditor = new MK8DSaveEditor();

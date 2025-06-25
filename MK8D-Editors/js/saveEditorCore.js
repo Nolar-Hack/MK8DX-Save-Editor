@@ -1,5 +1,5 @@
 /**
- * Classe principale pour l'édition des sauvegardes MK8D
+ * Main class for MK8D save editing
  */
 class MK8DSaveEditor {
     constructor() {
@@ -10,24 +10,24 @@ class MK8DSaveEditor {
     }
 
     /**
-     * Charge un fichier de sauvegarde
-     * @param {Uint8Array} data - Les données du fichier
-     * @param {string} fileName - Le nom du fichier
-     * @returns {Object} - Résultat du chargement
+     * Load a save file
+     * @param {Uint8Array} data - File data
+     * @param {string} fileName - File name
+     * @returns {Object} - Loading result
      */
     loadSaveFile(data, fileName) {
         try {
-            // Validation simplifiée du fichier
+            // Simplified file validation
             const validation = validateSaveFileSimple(data);
             if (!validation.valid) {
                 return {
                     success: false,
-                    error: 'Fichier invalide',
+                    error: 'Invalid file',
                     details: validation.errors
                 };
             }
 
-            // Sauvegarde des données
+            // Save data
             this.saveData = new Uint8Array(data);
             this.originalData = new Uint8Array(data);
             this.fileName = fileName;
@@ -48,12 +48,12 @@ class MK8DSaveEditor {
     }
 
     /**
-     * Extrait toutes les statistiques du fichier de sauvegarde
-     * @returns {Object} - Toutes les statistiques
+     * Extract all statistics from save file
+     * @returns {Object} - All statistics
      */
     extractAllStats() {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé');
+            throw new Error('No save file loaded');
         }
 
         const stats = {};
@@ -66,7 +66,7 @@ class MK8DSaveEditor {
                     stats[key] = readUint16LE(this.saveData, config.offset);
                 }
             } catch (error) {
-                console.warn(`Erreur lors de la lecture de ${key}:`, error);
+                console.warn(`Error reading ${key}:`, error);
                 stats[key] = 0;
             }
         }
@@ -75,29 +75,29 @@ class MK8DSaveEditor {
     }
 
     /**
-     * Modifie une statistique spécifique
-     * @param {string} statName - Le nom de la statistique
-     * @param {number} value - La nouvelle valeur
-     * @returns {boolean} - Succès de la modification
+     * Modify a specific statistic
+     * @param {string} statName - Statistic name
+     * @param {number} value - New value
+     * @returns {boolean} - Modification success
      */
     modifyStat(statName, value) {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé');
+            throw new Error('No save file loaded');
         }
 
         const config = STATS_OFFSETS[statName];
         if (!config) {
-            throw new Error(`Statistique inconnue: ${statName}`);
+            throw new Error(`Unknown statistic: ${statName}`);
         }
 
-        // Validation de la valeur
+        // Value validation
         const maxValue = config.type === 'uint32' ? 0xFFFFFFFF : 0xFFFF;
         if (value < 0 || value > maxValue) {
-            throw new Error(`Valeur hors limites pour ${config.name}: ${value} (max: ${maxValue})`);
+            throw new Error(`Value out of bounds for ${config.name}: ${value} (max: ${maxValue})`);
         }
 
         try {
-            // Écriture de la nouvelle valeur
+            // Write new value
             if (config.type === 'uint32') {
                 writeUint32LE(this.saveData, config.offset, value);
             } else if (config.type === 'uint16') {
@@ -108,14 +108,14 @@ class MK8DSaveEditor {
             return true;
 
         } catch (error) {
-            throw new Error(`Erreur lors de la modification de ${config.name}: ${error.message}`);
+            throw new Error(`Error modifying ${config.name}: ${error.message}`);
         }
     }
 
     /**
-     * Modifie plusieurs statistiques en une fois
-     * @param {Object} stats - Objet contenant les statistiques à modifier
-     * @returns {Object} - Résultat des modifications
+     * Modify multiple statistics at once
+     * @param {Object} stats - Object containing statistics to modify
+     * @returns {Object} - Modification results
      */
     modifyMultipleStats(stats) {
         const results = {
@@ -137,7 +137,7 @@ class MK8DSaveEditor {
     }
 
     /**
-     * Réinitialise les modifications
+     * Reset modifications
      */
     resetModifications() {
         if (this.originalData) {
@@ -147,12 +147,12 @@ class MK8DSaveEditor {
     }
 
     /**
-     * Obtient les données finales du fichier de sauvegarde
-     * @returns {Uint8Array} - Les données du fichier modifié
+     * Get final save file data
+     * @returns {Uint8Array} - Modified file data
      */
     getSaveData() {
         if (!this.saveData) {
-            throw new Error('Aucun fichier de sauvegarde chargé');
+            throw new Error('No save file loaded');
         }
 
         return new Uint8Array(this.saveData);

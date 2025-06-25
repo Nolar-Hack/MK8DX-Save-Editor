@@ -1,117 +1,117 @@
-# 🏁 Mario Kart 8 Deluxe - Éditeur de Sauvegarde Web
+# 🏁 Mario Kart 8 Deluxe - Web Save Editor
 
-Une interface web moderne et sécurisée pour modifier les fichiers de sauvegarde de Mario Kart 8 Deluxe sur Nintendo Switch.
+A modern and secure web interface for modifying Mario Kart 8 Deluxe save files on Nintendo Switch.
 
-## 🏗️ Architecture modulaire
+## 🏗️ Modular Architecture
 
-Ce projet utilise une **architecture modulaire** avec des petits fichiers spécialisés pour une meilleure maintenabilité et évolutivité.
+This project uses a **modular architecture** with small specialized files for better maintainability and scalability.
 
-## ✨ Fonctionnalités
+## ✨ Features
 
-- 🔒 **Sécurisé** : Utilise l'algorithme de checksum Nintendo officiel
-- 🎯 **Précis** : Modification de 16 statistiques différentes
-- 🌐 **Local** : Aucune donnée envoyée sur internet
-- 📱 **Responsive** : Interface adaptée à tous les écrans
-- ⚡ **Temps réel** : Validation instantanée des valeurs
-- 💾 **Sauvegarde** : Téléchargement automatique des fichiers modifiés
+- 🔒 **Secure**: Uses official Nintendo checksum algorithm
+- 🎯 **Precise**: Modification of 16 different statistics
+- 🌐 **Local**: No data sent over the internet
+- 📱 **Responsive**: Interface adapted to all screens
+- ⚡ **Real-time**: Instant value validation
+- 💾 **Save**: Automatic download of modified files
 
-## 🎮 Statistiques modifiables
+## 🎮 Modifiable Statistics
 
-### 💰 Monnaie & Objets
-- **Pièces** (0-4,294,967,295)
+### 💰 Currency & Items
+- **Coins** (0-4,294,967,295)
 
-### 🏎️ Techniques de course
-- **Dérapages** (0-4,294,967,295)
+### 🏎️ Racing Techniques
+- **Drifts** (0-4,294,967,295)
 - **Mini-Turbos** (0-4,294,967,295)
 - **Super Mini-Turbo** (0-4,294,967,295)
 - **Ultra Mini-Turbo** (0-4,294,967,295)
-- **Saut Synchro** (0-4,294,967,295)
-- **Sauvetage Lakitu** (0-4,294,967,295)
+- **Jump Sync** (0-4,294,967,295)
+- **Lakitu Rescue** (0-4,294,967,295)
 
-### 🏆 Points & Classements
-- **Points Course** (0-4,294,967,295)
-- **Points Bataille** (0-4,294,967,295)
-- **Couronnes Or** (0-4,294,967,295)
-- **Couronnes Argent** (0-65,535)
-- **Couronnes Bronze** (0-65,535)
+### 🏆 Points & Rankings
+- **Race Points** (0-4,294,967,295)
+- **Battle Points** (0-4,294,967,295)
+- **Gold Crowns** (0-4,294,967,295)
+- **Silver Crowns** (0-65,535)
+- **Bronze Crowns** (0-65,535)
 
-### 🎮 Parties jouées
-- **Parties Mondiales/Régionales** (0-4,294,967,295)
-- **Parties entre Amis** (0-4,294,967,295)
-- **Tournois** (0-4,294,967,295)
-- **Total Parties** (0-4,294,967,295)
+### 🎮 Games Played
+- **Worldwide/Regional Games** (0-4,294,967,295)
+- **Friend Games** (0-4,294,967,295)
+- **Tournaments** (0-4,294,967,295)
+- **Total Games** (0-4,294,967,295)
 
-## 🚀 Utilisation
+## 🚀 Usage
 
-### 1. Ouvrir l'éditeur
-Ouvrez le fichier [`index.html`](index.html) dans votre navigateur web moderne.
+### 1. Open the editor
+Open the [`index.html`](index.html) file in your modern web browser.
 
-### 2. Charger votre sauvegarde
-1. Cliquez sur "Sélectionner userdata.dat"
-2. Choisissez votre fichier de sauvegarde Mario Kart 8 Deluxe
-3. L'éditeur valide automatiquement l'intégrité du fichier
+### 2. Load your save
+1. Click on "Select userdata.dat"
+2. Choose your Mario Kart 8 Deluxe save file
+3. The editor automatically validates file integrity
 
-### 3. Modifier les statistiques
-1. Les valeurs actuelles s'affichent automatiquement
-2. Modifiez les valeurs souhaitées dans les champs
-3. La validation se fait en temps réel
+### 3. Modify statistics
+1. Current values are displayed automatically
+2. Modify desired values in the fields
+3. Validation is done in real-time
 
-### 4. Sauvegarder
-1. Cliquez sur "Sauvegarder les modifications"
-2. L'éditeur recalcule automatiquement le checksum
-3. Téléchargez le fichier modifié
+### 4. Save
+1. Click on "Save modifications"
+2. The editor automatically recalculates the checksum
+3. Download the modified file
 
-### 5. Installer sur votre Switch
-1. Copiez le fichier modifié sur votre Switch
-2. Remplacez l'ancien fichier de sauvegarde
-3. Profitez de vos nouvelles statistiques !
+### 5. Install on your Switch
+1. Copy the modified file to your Switch
+2. Replace the old save file
+3. Enjoy your new statistics!
 
-## 🛠️ Architecture technique
+## 🛠️ Technical Architecture
 
-### Structure des fichiers
+### File Structure
 
 ```
 MK8D-Editors/
-├── index.html              # Interface utilisateur principale
-├── css/                    # Styles modulaires
-│   ├── variables.css       # Variables CSS (16 lignes)
-│   ├── base.css           # Reset et base (42 lignes)
-│   ├── header.css         # Header (35 lignes)
-│   ├── cards.css          # Cartes (46 lignes)
-│   ├── forms.css          # Formulaires (71 lignes)
-│   ├── buttons.css        # Boutons (42 lignes)
-│   ├── layout.css         # Mise en page (54 lignes)
-│   ├── messages.css       # Messages (49 lignes)
-│   └── responsive.css     # Responsive (40 lignes)
-├── js/                    # JavaScript modulaire
-│   ├── crypto.js          # Cryptographie (38 lignes)
-│   ├── binary.js          # Binaire (50 lignes)
-│   ├── fileUtils.js       # Fichiers (49 lignes)
-│   ├── formatters.js      # Formatage (55 lignes)
-│   ├── validation.js      # Validation (113 lignes)
-│   ├── ui.js              # Interface (105 lignes)
-│   ├── offsets.js         # Offsets (52 lignes)
-│   ├── saveEditorCore.js  # Classe principale (162 lignes)
-│   ├── saveEditorUtils.js # Extensions (120 lignes)
-│   └── main.js            # Script principal (367 lignes)
+├── index.html              # Main user interface
+├── css/                    # Modular styles
+│   ├── variables.css       # CSS Variables (16 lines)
+│   ├── base.css           # Reset and base (42 lines)
+│   ├── header.css         # Header (35 lines)
+│   ├── cards.css          # Cards (46 lines)
+│   ├── forms.css          # Forms (71 lines)
+│   ├── buttons.css        # Buttons (42 lines)
+│   ├── layout.css         # Layout (54 lines)
+│   ├── messages.css       # Messages (49 lines)
+│   └── responsive.css     # Responsive (40 lines)
+├── js/                    # Modular JavaScript
+│   ├── crypto.js          # Cryptography (38 lines)
+│   ├── binary.js          # Binary (50 lines)
+│   ├── fileUtils.js       # Files (49 lines)
+│   ├── formatters.js      # Formatting (55 lines)
+│   ├── validation.js      # Validation (113 lines)
+│   ├── ui.js              # Interface (105 lines)
+│   ├── offsets.js         # Offsets (52 lines)
+│   ├── saveEditorCore.js  # Main class (162 lines)
+│   ├── saveEditorUtils.js # Extensions (120 lines)
+│   └── main.js            # Main script (367 lines)
 └── README.md               # Documentation
 ```
 
-### Technologies utilisées
-- **HTML5** : Structure sémantique moderne
-- **CSS3** : Design responsive avec variables CSS et animations
-- **JavaScript ES6+** : Logique métier et manipulation binaire
-- **Web APIs** : FileReader, Blob, URL pour la gestion des fichiers
-- **Architecture modulaire** : Séparation des responsabilités et maintenabilité
+### Technologies Used
+- **HTML5**: Modern semantic structure
+- **CSS3**: Responsive design with CSS variables and animations
+- **JavaScript ES6+**: Business logic and binary manipulation
+- **Web APIs**: FileReader, Blob, URL for file management
+- **Modular architecture**: Separation of concerns and maintainability
 
-### Avantages de l'architecture modulaire
-- 🎯 **Maintenabilité** : Chaque fichier a une responsabilité unique
-- 🚀 **Performance** : Chargement sélectif et cache optimisé
-- 👥 **Collaboration** : Développement en parallèle facilité
-- 🔧 **Évolutivité** : Ajout de fonctionnalités simplifié
-- 🧪 **Tests** : Tests unitaires par module possibles
+### Modular Architecture Benefits
+- 🎯 **Maintainability**: Each file has a unique responsibility
+- 🚀 **Performance**: Selective loading and optimized cache
+- 👥 **Collaboration**: Parallel development facilitated
+- 🔧 **Scalability**: Simplified feature addition
+- 🧪 **Testing**: Unit testing per module possible
 
-### Algorithme de checksum Nintendo
+### Nintendo Checksum Algorithm
 ```javascript
 function calculateNintendoChecksum(data) {
     const crc32 = calculateCRC32(data);
@@ -119,130 +119,130 @@ function calculateNintendoChecksum(data) {
 }
 ```
 
-## 🔧 Développement
+## 🔧 Development
 
-### Prérequis
-- Navigateur web moderne (Chrome, Firefox, Safari, Edge)
-- Serveur web local (optionnel, pour le développement)
+### Prerequisites
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Local web server (optional, for development)
 
-### Installation locale
+### Local Installation
 ```bash
-# Cloner ou télécharger les fichiers
+# Clone or download files
 git clone <repository>
 
-# Serveur local simple (optionnel)
+# Simple local server (optional)
 python -m http.server 8000
-# ou
+# or
 npx serve .
 ```
 
-### Structure du code
+### Code Structure
 
-- **[`js/crypto.js`](js/crypto.js)** : CRC32 et checksum Nintendo (38 lignes)
-- **[`js/binary.js`](js/binary.js)** : Lecture/écriture binaire (50 lignes)
-- **[`js/fileUtils.js`](js/fileUtils.js)** : Gestion des fichiers (49 lignes)
-- **[`js/formatters.js`](js/formatters.js)** : Formatage et utilitaires (55 lignes)
-- **[`js/validation.js`](js/validation.js)** : Validation des données (113 lignes)
-- **[`js/ui.js`](js/ui.js)** : Interface utilisateur (105 lignes)
-- **[`js/offsets.js`](js/offsets.js)** : Offsets des statistiques (52 lignes)
-- **[`js/saveEditorCore.js`](js/saveEditorCore.js)** : Classe principale (162 lignes)
-- **[`js/saveEditorUtils.js`](js/saveEditorUtils.js)** : Extensions de classe (120 lignes)
-- **[`js/main.js`](js/main.js)** : Script principal (367 lignes)
+- **[`js/crypto.js`](js/crypto.js)**: CRC32 and Nintendo checksum (38 lines)
+- **[`js/binary.js`](js/binary.js)**: Binary read/write (50 lines)
+- **[`js/fileUtils.js`](js/fileUtils.js)**: File management (49 lines)
+- **[`js/formatters.js`](js/formatters.js)**: Formatting and utilities (55 lines)
+- **[`js/validation.js`](js/validation.js)**: Data validation (113 lines)
+- **[`js/ui.js`](js/ui.js)**: User interface (105 lines)
+- **[`js/offsets.js`](js/offsets.js)**: Statistics offsets (52 lines)
+- **[`js/saveEditorCore.js`](js/saveEditorCore.js)**: Main class (162 lines)
+- **[`js/saveEditorUtils.js`](js/saveEditorUtils.js)**: Class extensions (120 lines)
+- **[`js/main.js`](js/main.js)**: Main script (367 lines)
 
-## 📊 Offsets des statistiques
+## 📊 Statistics Offsets
 
-| Statistique | Offset | Type | Taille |
-|-------------|--------|------|--------|
-| Pièces | 0x195c | uint32 | 4 bytes |
-| Dérapages | 0x1968 | uint32 | 4 bytes |
+| Statistic | Offset | Type | Size |
+|-----------|--------|------|------|
+| Coins | 0x195c | uint32 | 4 bytes |
+| Drifts | 0x1968 | uint32 | 4 bytes |
 | Mini-Turbos | 0x1970 | uint32 | 4 bytes |
 | Super Mini-Turbo | 0x1974 | uint32 | 4 bytes |
 | Ultra Mini-Turbo | 0x1978 | uint32 | 4 bytes |
-| Saut Synchro | 0x1964 | uint32 | 4 bytes |
-| Sauvetage Lakitu | 0x197c | uint32 | 4 bytes |
-| Points Course | 0x1e94 | uint32 | 4 bytes |
-| Points Bataille | 0x1e98 | uint32 | 4 bytes |
-| Couronnes Or | 0x19f0 | uint32 | 4 bytes |
-| Couronnes Argent | 0x01a6 | uint16 | 2 bytes |
-| Couronnes Bronze | 0x012a | uint16 | 2 bytes |
-| Parties Mondiales | 0x02e8 | uint32 | 4 bytes |
-| Parties Amis | 0x03ac | uint32 | 4 bytes |
-| Tournois | 0x0004 | uint32 | 4 bytes |
-| Total Parties | 0x0350 | uint32 | 4 bytes |
+| Jump Sync | 0x1964 | uint32 | 4 bytes |
+| Lakitu Rescue | 0x197c | uint32 | 4 bytes |
+| Race Points | 0x1e94 | uint32 | 4 bytes |
+| Battle Points | 0x1e98 | uint32 | 4 bytes |
+| Gold Crowns | 0x19f0 | uint32 | 4 bytes |
+| Silver Crowns | 0x01a6 | uint16 | 2 bytes |
+| Bronze Crowns | 0x012a | uint16 | 2 bytes |
+| Worldwide Games | 0x02e8 | uint32 | 4 bytes |
+| Friend Games | 0x03ac | uint32 | 4 bytes |
+| Tournaments | 0x0004 | uint32 | 4 bytes |
+| Total Games | 0x0350 | uint32 | 4 bytes |
 
-## ⚠️ Avertissements importants
+## ⚠️ Important Warnings
 
-1. **Sauvegarde** : Toujours faire une copie de votre fichier original
-2. **Validation** : L'éditeur vérifie l'intégrité mais testez sur une sauvegarde
-3. **Limites** : Respectez les valeurs maximales pour éviter les bugs
-4. **Compatibilité** : Testé avec Mario Kart 8 Deluxe v3.0.1
+1. **Backup**: Always make a copy of your original file
+2. **Validation**: The editor checks integrity but test on a backup
+3. **Limits**: Respect maximum values to avoid bugs
+4. **Compatibility**: Tested with Mario Kart 8 Deluxe v3.0.1
 
-## 🐛 Dépannage
+## 🐛 Troubleshooting
 
-### Le fichier ne se charge pas
-- Vérifiez que c'est bien un fichier `userdata.dat`
-- Vérifiez la taille (doit être exactement 80,736 bytes)
-- Assurez-vous que le fichier n'est pas corrompu
+### File won't load
+- Check that it's a `userdata.dat` file
+- Check the size (must be exactly 80,736 bytes)
+- Make sure the file is not corrupted
 
-### Les modifications ne s'appliquent pas
-- Vérifiez que les valeurs sont dans les limites autorisées
-- Assurez-vous d'avoir cliqué sur "Sauvegarder les modifications"
-- Vérifiez la console du navigateur pour les erreurs
+### Modifications don't apply
+- Check that values are within allowed limits
+- Make sure you clicked "Save modifications"
+- Check browser console for errors
 
-### Le fichier modifié ne fonctionne pas sur Switch
-- Vérifiez que le checksum a été recalculé (affiché dans l'interface)
-- Assurez-vous d'avoir remplacé le bon fichier
-- Testez d'abord avec de petites modifications
+### Modified file doesn't work on Switch
+- Check that checksum was recalculated (displayed in interface)
+- Make sure you replaced the correct file
+- Test first with small modifications
 
 ## 📝 Changelog
 
 ### v1.1.2 (2025-06-24)
-- 🐛 **Correction critique** : Le calcul du checksum est désormais correct. L'erreur provenait de la régénération constante de la table CRC32, qui a été optimisée pour n'être calculée qu'une seule fois.
-- ✨ **Amélioration** : La logique de modification du compteur a été centralisée dans une méthode `setCounter` pour plus de robustesse.
-- 🧹 **Refactoring** : Le code dupliqué et la logique erronée ont été supprimés de `main.js` et `saveEditorUtils.js`.
+- 🐛 **Critical fix**: Checksum calculation is now correct. The error came from constant regeneration of the CRC32 table, which has been optimized to be calculated only once.
+- ✨ **Improvement**: Counter modification logic has been centralized in a `setCounter` method for more robustness.
+- 🧹 **Refactoring**: Duplicate code and erroneous logic have been removed from `main.js` and `saveEditorUtils.js`.
 
 ### v1.1.1 (2025-01-24)
-- 🐛 **Correction critique** : Fonction `validateCurrentFile()` corrigée
-- 🔧 **Offset corrigé** : Sauvetage Lakitu déplacé de 0x1e98 vers 0x197c
-- 🧹 **Optimisation** : Suppression des doublons d'offsets
-- ✅ **Validation** : Vérification complète de la cohérence du code
-- 📚 **Documentation** : README mis à jour avec les corrections
+- 🐛 **Critical fix**: `validateCurrentFile()` function corrected
+- 🔧 **Offset corrected**: Lakitu Rescue moved from 0x1e98 to 0x197c
+- 🧹 **Optimization**: Removal of offset duplicates
+- ✅ **Validation**: Complete code consistency check
+- 📚 **Documentation**: README updated with corrections
 
 ### v1.1.0 (2025-01-22)
-- ✨ Architecture modulaire ajoutée
-- 📦 Fichiers CSS spécialisés (9 modules)
-- 🧩 Fichiers JavaScript modulaires (10 modules)
-- 🎯 Maintenabilité améliorée
-- 🚀 Performance optimisée
-- 👥 Collaboration facilitée
+- ✨ Modular architecture added
+- 📦 Specialized CSS files (9 modules)
+- 🧩 Modular JavaScript files (10 modules)
+- 🎯 Improved maintainability
+- 🚀 Optimized performance
+- 👥 Facilitated collaboration
 
 ### v1.0.0 (2025-01-22)
-- ✨ Interface web complète
-- 🔒 Algorithme de checksum Nintendo intégré
-- 📊 16 statistiques modifiables
-- 🎨 Design moderne et responsive
-- ⚡ Validation en temps réel
-- 💾 Téléchargement automatique
+- ✨ Complete web interface
+- 🔒 Integrated Nintendo checksum algorithm
+- 📊 16 modifiable statistics
+- 🎨 Modern and responsive design
+- ⚡ Real-time validation
+- 💾 Automatic download
 
 ## 🤝 Contribution
 
-Ce projet est basé sur le reverse engineering du format de sauvegarde Mario Kart 8 Deluxe. Les contributions sont les bienvenues pour :
+This project is based on reverse engineering of the Mario Kart 8 Deluxe save format. Contributions are welcome for:
 
-- Ajouter de nouvelles statistiques
-- Améliorer l'interface utilisateur
-- Optimiser les performances
-- Corriger les bugs
+- Adding new statistics
+- Improving user interface
+- Optimizing performance
+- Fixing bugs
 
-## 📄 Licence
+## 📄 License
 
-Ce projet est à des fins éducatives et de recherche. Utilisez-le de manière responsable et respectez les conditions d'utilisation de Nintendo.
+This project is for educational and research purposes. Use it responsibly and respect Nintendo's terms of use.
 
-## 🙏 Remerciements
+## 🙏 Acknowledgments
 
-- Communauté de reverse engineering Nintendo Switch
-- Développeurs d'outils de modding Mario Kart
-- Testeurs et contributeurs
+- Nintendo Switch reverse engineering community
+- Mario Kart modding tool developers
+- Testers and contributors
 
 ---
 
-**⚡ Fait avec passion pour la communauté Mario Kart 8 Deluxe ! 🏁**
+**⚡ Made with passion for the Mario Kart 8 Deluxe community! 🏁**

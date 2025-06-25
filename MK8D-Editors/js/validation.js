@@ -1,14 +1,14 @@
 /**
- * Fonctions de validation pour les fichiers de sauvegarde
+ * Validation functions for save files
  */
 
 /**
- * Validation simplifiée pour les fichiers Nintendo Switch
- * @param {Uint8Array} data - Les données du fichier
- * @returns {Object} - Résultat de la validation
+ * Simplified validation for Nintendo Switch files
+ * @param {Uint8Array} data - File data
+ * @returns {Object} - Validation result
  */
 function validateSaveFileSimple(data) {
-    console.log('Validation simplifiée du fichier, taille:', data.length);
+    console.log('Simplified file validation, size:', data.length);
     
     const result = {
         valid: false,
@@ -19,67 +19,67 @@ function validateSaveFileSimple(data) {
         errors: []
     };
     
-    // Vérification de la taille uniquement
+    // Size verification only
     if (data.length !== 80736) {
-        console.log(`Taille incorrecte: ${data.length} bytes (attendu: 80736 bytes)`);
-        result.errors.push(`Taille incorrecte: ${data.length} bytes (attendu: 80736 bytes)`);
+        console.log(`Incorrect size: ${data.length} bytes (expected: 80736 bytes)`);
+        result.errors.push(`Incorrect size: ${data.length} bytes (expected: 80736 bytes)`);
         return result;
     }
     
-    // Lire les vraies valeurs du checksum et du compteur
+    // Read real checksum and counter values
     try {
         const checksumOffset = SYSTEM_OFFSETS.checksum;
         const counterOffset = SYSTEM_OFFSETS.counter;
         
-        console.log(`Lecture checksum à l'offset: 0x${checksumOffset.toString(16)} (${checksumOffset})`);
-        console.log(`Lecture counter à l'offset: 0x${counterOffset.toString(16)} (${counterOffset})`);
+        console.log(`Reading checksum at offset: 0x${checksumOffset.toString(16)} (${checksumOffset})`);
+        console.log(`Reading counter at offset: 0x${counterOffset.toString(16)} (${counterOffset})`);
         
-        // Vérifier que les offsets sont dans les limites du fichier
+        // Check that offsets are within file bounds
         if (checksumOffset + 4 <= data.length && counterOffset + 1 <= data.length) {
-            // Lire les valeurs réelles
+            // Read actual values
             result.checksum = readUint32LE(data, checksumOffset);
-            result.counter = data[counterOffset]; // 1 byte seulement
+            result.counter = data[counterOffset]; // 1 byte only
             
-            console.log(`Checksum lu: 0x${result.checksum.toString(16).padStart(8, '0')}`);
-            console.log(`Compteur lu: ${result.counter}`);
+            console.log(`Checksum read: 0x${result.checksum.toString(16).padStart(8, '0')}`);
+            console.log(`Counter read: ${result.counter}`);
         } else {
-            console.log('⚠️ Offsets hors limites');
-            result.errors.push('Offsets système hors limites du fichier');
+            console.log('⚠️ Offsets out of bounds');
+            result.errors.push('System offsets out of file bounds');
         }
     } catch (error) {
-        console.error('Erreur lors de la lecture des valeurs système:', error);
-        result.errors.push(`Erreur lors de la lecture: ${error.message}`);
+        console.error('Error reading system values:', error);
+        result.errors.push(`Reading error: ${error.message}`);
     }
     
-    // Vérifier la signature Nintendo Switch (optionnel)
+    // Check Nintendo Switch signature (optional)
     const signature = new TextDecoder().decode(data.subarray(0, 4));
-    console.log(`Signature du fichier: "${signature}"`);
+    console.log(`File signature: "${signature}"`);
     
     if (signature === 'SUTC') {
-        console.log('✅ Fichier Nintendo Switch détecté');
+        console.log('✅ Nintendo Switch file detected');
     } else {
-        console.log('⚠️ Signature Nintendo Switch non trouvée, mais fichier accepté');
+        console.log('⚠️ Nintendo Switch signature not found, but file accepted');
     }
     
-    // Accepter le fichier
+    // Accept file
     result.valid = true;
-    console.log('✅ Fichier accepté pour édition');
+    console.log('✅ File accepted for editing');
     
     return result;
 }
 
 /**
- * Valide une valeur pour une statistique donnée
- * @param {string} statName - Le nom de la statistique
- * @param {number} value - La valeur à valider
- * @returns {Object} - Résultat de la validation
+ * Validates a value for a given statistic
+ * @param {string} statName - The statistic name
+ * @param {number} value - The value to validate
+ * @returns {Object} - Validation result
  */
 function validateStatValue(statName, value) {
     const config = STATS_OFFSETS[statName];
     if (!config) {
         return {
             valid: false,
-            error: `Statistique inconnue: ${statName}`
+            error: `Unknown statistic: ${statName}`
         };
     }
 
@@ -88,21 +88,21 @@ function validateStatValue(statName, value) {
     if (typeof value !== 'number' || isNaN(value)) {
         return {
             valid: false,
-            error: 'La valeur doit être un nombre'
+            error: 'Value must be a number'
         };
     }
 
     if (value < 0) {
         return {
             valid: false,
-            error: 'La valeur ne peut pas être négative'
+            error: 'Value cannot be negative'
         };
     }
 
     if (value > maxValue) {
         return {
             valid: false,
-            error: `La valeur ne peut pas dépasser ${maxValue.toLocaleString()}`
+            error: `Value cannot exceed ${maxValue.toLocaleString()}`
         };
     }
 

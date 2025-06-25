@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario Kart 8 Deluxe - Éditeur de Sauvegarde</title>
+    <title>Mario Kart 8 Deluxe - Save Editor</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -26,64 +26,64 @@
                 <h1 class="title">
                     <span class="mk-logo">🏁</span>
                     Mario Kart 8 Deluxe
-                    <span class="subtitle">Éditeur de Sauvegarde</span>
+                    <span class="subtitle">Save Editor</span>
                 </h1>
-                <p class="description">Modifiez vos statistiques de jeu en toute sécurité</p>
+                <p class="description">Safely modify your game statistics</p>
             </div>
         </header>
 
         <main class="main-content">
-            <!-- Section de chargement de fichier -->
+            <!-- File loading section -->
             <section class="file-section">
                 <div class="card">
-                    <h2>📁 Charger le fichier de sauvegarde</h2>
+                    <h2>📁 Load save file</h2>
                     <div class="file-input-container">
                         <input type="file" id="fileInput" accept=".dat" class="file-input">
                         <label for="fileInput" class="file-label">
                             <span class="file-icon">📄</span>
-                            <span class="file-text">Sélectionner userdata.dat</span>
+                            <span class="file-text">Select userdata.dat</span>
                         </label>
                     </div>
                     <div class="file-info" id="fileInfo" style="display: none;">
                         <div class="info-item">
-                            <span class="info-label">Fichier :</span>
+                            <span class="info-label">File:</span>
                             <span class="info-value" id="fileName"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Taille :</span>
+                            <span class="info-label">Size:</span>
                             <span class="info-value" id="fileSize"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Checksum :</span>
+                            <span class="info-label">Checksum:</span>
                             <span class="info-value" id="fileChecksum"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Compteur :</span>
+                            <span class="info-label">Counter:</span>
                             <span class="info-value" id="fileCounter"></span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section des statistiques -->
+            <!-- Statistics section -->
             <section class="stats-section" id="statsSection" style="display: none;">
                 <div class="card">
-                    <h2>📊 Statistiques du jeu</h2>
+                    <h2>📊 Game Statistics</h2>
                     <div class="stats-grid">
-                        <!-- Monnaie et objets -->
+                        <!-- Currency and items -->
                         <div class="stat-category">
-                            <h3>💰 Monnaie & Objets</h3>
+                            <h3>💰 Currency & Items</h3>
                             <div class="stat-item">
-                                <label for="coins">Pièces</label>
+                                <label for="coins">Coins</label>
                                 <input type="number" id="coins" min="0" max="99999">
                             </div>
                         </div>
 
-                        <!-- Techniques de course -->
+                        <!-- Racing techniques -->
                         <div class="stat-category">
-                            <h3>🏎️ Techniques de course</h3>
+                            <h3>🏎️ Racing Techniques</h3>
                             <div class="stat-item">
-                                <label for="drifts">Dérapages</label>
+                                <label for="drifts">Drifts</label>
                                 <input type="number" id="drifts" min="0" max="999999">
                             </div>
                             <div class="stat-item">
@@ -99,57 +99,57 @@
                                 <input type="number" id="ultraMiniTurbo" min="0" max="999999">
                             </div>
                             <div class="stat-item">
-                                <label for="jumpSync">Saut Synchro</label>
+                                <label for="jumpSync">Jump Sync</label>
                                 <input type="number" id="jumpSync" min="0" max="999999">
                             </div>
                             <div class="stat-item">
-                                <label for="lakituRescue">Sauvetage Lakitu</label>
+                                <label for="lakituRescue">Lakitu Rescue</label>
                                 <input type="number" id="lakituRescue" min="0" max="999999">
                             </div>
                         </div>
 
-                        <!-- Points et classements -->
+                        <!-- Points and rankings -->
                         <div class="stat-category">
-                            <h3>🏆 Points & Classements</h3>
+                            <h3>🏆 Points & Rankings</h3>
                             <div class="stat-item">
-                                <label for="racePoints">Points Course</label>
+                                <label for="racePoints">Race Points</label>
                                 <input type="number" id="racePoints" min="0" max="99999">
                             </div>
                             <div class="stat-item">
-                                <label for="battlePoints">Points Bataille</label>
+                                <label for="battlePoints">Battle Points</label>
                                 <input type="number" id="battlePoints" min="0" max="99999">
                             </div>
                             <div class="stat-item">
-                                <label for="goldCrowns">Couronnes Or</label>
+                                <label for="goldCrowns">Gold Crowns</label>
                                 <input type="number" id="goldCrowns" min="0" max="999">
                             </div>
                             <div class="stat-item">
-                                <label for="silverCrowns">Couronnes Argent</label>
+                                <label for="silverCrowns">Silver Crowns</label>
                                 <input type="number" id="silverCrowns" min="0" max="999">
                             </div>
                             <div class="stat-item">
-                                <label for="bronzeCrowns">Couronnes Bronze</label>
+                                <label for="bronzeCrowns">Bronze Crowns</label>
                                 <input type="number" id="bronzeCrowns" min="0" max="999">
                             </div>
                         </div>
 
-                        <!-- Parties jouées -->
+                        <!-- Games played -->
                         <div class="stat-category">
-                            <h3>🎮 Parties jouées</h3>
+                            <h3>🎮 Games Played</h3>
                             <div class="stat-item">
-                                <label for="worldRegionalGames">Parties Mondiales/Régionales</label>
+                                <label for="worldRegionalGames">Worldwide/Regional Games</label>
                                 <input type="number" id="worldRegionalGames" min="0" max="99999">
                             </div>
                             <div class="stat-item">
-                                <label for="friendGames">Parties entre Amis</label>
+                                <label for="friendGames">Friend Games</label>
                                 <input type="number" id="friendGames" min="0" max="99999">
                             </div>
                             <div class="stat-item">
-                                <label for="tournaments">Tournois</label>
+                                <label for="tournaments">Tournaments</label>
                                 <input type="number" id="tournaments" min="0" max="99999">
                             </div>
                             <div class="stat-item">
-                                <label for="totalGames">Total Parties</label>
+                                <label for="totalGames">Total Games</label>
                                 <input type="number" id="totalGames" min="0" max="99999">
                             </div>
                         </div>
@@ -157,29 +157,29 @@
                 </div>
             </section>
 
-            <!-- Section de modification du compteur -->
+            <!-- Counter modification section -->
             <section class="counter-section" id="counterSection" style="display: none;">
                 <div class="card">
-                    <h2>🔧 Modification du compteur</h2>
+                    <h2>🔧 Counter Modification</h2>
                     <div class="counter-content">
                         <div class="counter-info">
-                            <p>Le compteur est incrémenté à chaque modification du fichier de sauvegarde. Vous pouvez le modifier manuellement si nécessaire.</p>
+                            <p>The counter is incremented with each modification of the save file. You can modify it manually if necessary.</p>
                         </div>
                         <div class="counter-controls">
                             <div class="stat-item">
-                                <label for="counterInput">Nouveau compteur (0-255)</label>
+                                <label for="counterInput">New counter (0-255)</label>
                                 <div class="counter-input-group">
                                     <input type="number" id="counterInput" min="0" max="255" class="counter-input">
-                                    <button class="action-btn secondary small" id="clearCounterBtn" title="Effacer le champ">
+                                    <button class="action-btn secondary small" id="clearCounterBtn" title="Clear field">
                                         <span class="btn-icon">🗑️</span>
                                     </button>
                                     <button class="action-btn primary small" id="loadCurrentCounterBtn">
                                         <span class="btn-icon">📖</span>
-                                        Charger actuel
+                                        Load current
                                     </button>
                                     <button class="action-btn success small" id="modifyCounterBtn">
                                         <span class="btn-icon">✏️</span>
-                                        Modifier
+                                        Modify
                                     </button>
                                 </div>
                             </div>
@@ -189,40 +189,40 @@
                 </div>
             </section>
 
-            <!-- Section des actions -->
+            <!-- Actions section -->
             <section class="actions-section" id="actionsSection" style="display: none;">
                 <div class="card">
                     <h2>⚡ Actions</h2>
                     <div class="actions-grid">
                         <button class="action-btn primary" id="saveBtn">
                             <span class="btn-icon">💾</span>
-                            Sauvegarder les modifications
+                            Save modifications
                         </button>
                         <button class="action-btn secondary" id="resetBtn">
                             <span class="btn-icon">🔄</span>
-                            Réinitialiser les valeurs
+                            Reset values
                         </button>
                         <button class="action-btn danger" id="downloadBtn" style="display: none;">
                             <span class="btn-icon">⬇️</span>
-                            Télécharger le fichier modifié
+                            Download modified file
                         </button>
                     </div>
                 </div>
             </section>
 
-            <!-- Section d'informations -->
+            <!-- Information section -->
             <section class="info-section">
                 <div class="card info-card">
-                    <h2>ℹ️ Informations importantes</h2>
+                    <h2>ℹ️ Important Information</h2>
                     <div class="info-content">
                         <div class="warning">
-                            <strong>⚠️ Attention :</strong> Toujours faire une sauvegarde de votre fichier original avant modification !
+                            <strong>⚠️ Warning:</strong> Always backup your original file before modification!
                         </div>
                         <ul class="info-list">
-                            <li>✅ Cet éditeur utilise l'algorithme de checksum Nintendo officiel</li>
-                            <li>✅ Les modifications préservent l'intégrité du fichier</li>
-                            <li>✅ Compatible avec Mario Kart 8 Deluxe (Nintendo Switch)</li>
-                            <li>🔒 Aucune donnée n'est envoyée sur internet - tout est traité localement</li>
+                            <li>✅ This editor uses the official Nintendo checksum algorithm</li>
+                            <li>✅ Modifications preserve file integrity</li>
+                            <li>✅ Compatible with Mario Kart 8 Deluxe (Nintendo Switch)</li>
+                            <li>🔒 No data is sent over the internet - everything is processed locally</li>
                         </ul>
                     </div>
                 </div>
